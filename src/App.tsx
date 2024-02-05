@@ -1,23 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
-function App() {
+// import { Counter } from './container/counter'
+
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "./store";
+// import { incrementByAmount } from './container/counter/slice';
+import { CartList } from './container/cart';
+
+import { add } from './container/cart/slice'
+
+const App: React.FC<{}> = () => {
+  // const count = useSelector((state: RootState) => state.counter.value);
+
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* <Counter/>
+        {count}
+
+        <button className="button" onClick={()=>dispatch(incrementByAmount({ value: 10}))}>
+               +
+        </button> */}
+
+        <input placeholder='Add to cart' onBlur={(e)=>dispatch(add({title: e.target.value}))}></input>
+
+        < CartList />
       </header>
     </div>
   );
